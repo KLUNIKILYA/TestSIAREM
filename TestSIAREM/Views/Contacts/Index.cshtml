@@ -1,0 +1,78 @@
+﻿<div class="container mt-4">
+    <div class="header-panel">
+        <h2>Список контактов</h2>
+        <button id="btnAdd" type="button">
+            + Новый контакт
+        </button>
+    </div>
+
+    <div class="table-wrapper">
+        <table id="contactsTable">
+            <thead>
+                <tr>
+                    <th>Имя</th>
+                    <th>Телефон</th>
+                    <th>Должность</th>
+                    <th>Дата рождения</th>
+                </tr>
+            </thead>
+            <tbody id="contactsTableBody">
+            </tbody>
+        </table>
+        <p style="text-align: center; color: #666; font-size: 0.9em; margin-top: 10px;">
+            Нажмите на строку, чтобы редактировать.
+        </p>
+    </div>
+</div>
+
+<div class="modal fade" id="contactModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitle">Карточка контакта</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="contactForm">
+                    <input type="hidden" id="ContactId" value="0">
+
+                    <div class="mb-3">
+                        <label>Имя *</label>
+                        <input type="text" class="form-control" id="Name">
+                        <small class="error-msg" id="errorName"></small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Телефон *</label>
+                        <input type="text" class="form-control" id="MobilePhone">
+                        <small class="error-msg" id="errorPhone"></small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Должность *</label>
+                        <input type="text" class="form-control" id="JobTitle">
+                        <small class="error-msg" id="errorJob"></small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Дата рождения</label>
+                        <input type="date" class="form-control" id="BirthDate">
+                        <small class="error-msg" id="errorDate"></small>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer" style="display: flex; justify-content: space-between;">
+                <button type="button" id="btnDelete" style="display: none; color: red;">
+                    Удалить
+                </button>
+
+                <div>
+                    <button type="button" data-bs-dismiss="modal">Отмена</button>
+                    <button type="button" id="btnSave">Сохранить</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
