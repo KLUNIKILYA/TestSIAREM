@@ -1,5 +1,5 @@
-﻿using Data.Interfaces;
-using Data.Model;
+﻿using Application.Interfaces;
+using Data.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

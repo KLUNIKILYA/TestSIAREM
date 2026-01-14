@@ -26,6 +26,7 @@
 
 function openModal(contact) {
     $('.error-msg').text('');
+    $('#serverError').hide().text('');
 
     if (contact) {
         $('#ContactId').val(contact.id);
@@ -87,6 +88,7 @@ function saveContact() {
     };
 
     $('#btnSave').prop('disabled', true);
+    $('#serverError').hide();
 
     $.ajax({
         url: '/Contacts/SaveContact',
@@ -98,12 +100,16 @@ function saveContact() {
             loadContacts();
         },
         error: function (xhr) {
-            if (xhr.status === 400 && xhr.responseJSON) {
-                alert('Ошибка валидации данных на сервере');
-                console.log(xhr.responseJSON);
-            } else {
-                alert('Ошибка сохранения: ' + xhr.statusText);
+            var errorMessage = "Произошла неизвестная ошибка";
+
+            if (xhr.responseText) {
+                errorMessage = xhr.responseText;
             }
+            else if (xhr.status === 400) {
+                errorMessage = "Проверьте правильность введенных данных";
+            }
+
+            $('#serverError').text(errorMessage).show();
         },
         complete: function () {
             $('#btnSave').prop('disabled', false);

@@ -1,18 +1,12 @@
-using Data.Interfaces;
+using Application;
 using Infrastructure;
-using Infrastructure.Repositories;
-using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(connectionString)); 
+builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddApplication();
 
 builder.Services.AddControllersWithViews();
-
-builder.Services.AddScoped<IContactRepository, ContactRepository>();
 
 var app = builder.Build();
 
